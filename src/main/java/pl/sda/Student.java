@@ -45,8 +45,8 @@ public class Student {
 
     public Double getAverage() {
         Double sumOfAll = 0.0;
-        for (SchoolSubject key : grades.keySet()) {
-            sumOfAll += getFinalGrade(key);
+        for (Map.Entry<SchoolSubject, List<Double>> entry : grades.entrySet()) {
+            sumOfAll += getFinalGrade(entry.getKey());
         }
         return sumOfAll / grades.size();
     }
