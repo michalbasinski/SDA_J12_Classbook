@@ -36,11 +36,18 @@ public class Student {
         for (Double grade : subjectGrades) {
             sum += grade;
         }
-        return sum / subjectGrades.size();
+        return Double.valueOf(Math.round(sum / subjectGrades.size()));
     }
 
     public Double getFinalGradeUsingLamda(SchoolSubject subject) {
         return grades.get(subject).stream().collect(Collectors.averagingDouble(x -> x));
     }
 
+    public Double getAverage() {
+        Double sumOfAll = 0.0;
+        for (SchoolSubject key : grades.keySet()) {
+            sumOfAll += getFinalGrade(key);
+        }
+        return sumOfAll / grades.size();
+    }
 }

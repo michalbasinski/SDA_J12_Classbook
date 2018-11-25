@@ -34,18 +34,36 @@ public class StudentTest {
     public void shouldComputeFinalGrade() {
         //given
         final SchoolSubject subject = SchoolSubject.MATH;
-        final Double grade1 = 4.0;
-        final Double grade2 = 4.5;
-        final Double grade3 = 3.0;
-        final Double expectedAverage = 3.8;
+        final Double expectedAverage = 4.0;
+        prepareGrades();
 
         //when
-        student.addGrade(subject, grade1);
-        student.addGrade(subject, grade2);
-        student.addGrade(subject, grade3);
         Double average = student.getFinalGrade(subject);
 
         //then
         Assert.assertEquals(expectedAverage, average, 0.05);
+    }
+
+    @Test
+    public void shouldComputeAverageFromManySubjects() {
+        //given
+        prepareGrades();
+        final Double expectedAverage = 4.0;
+
+        //when
+        Double average = student.getAverage();
+
+        //then
+        Assert.assertEquals(expectedAverage, average);
+    }
+
+    private void prepareGrades() {
+        student.addGrade(SchoolSubject.MATH, 4.0);
+        student.addGrade(SchoolSubject.MATH, 4.5);
+        student.addGrade(SchoolSubject.MATH, 3.0);
+
+        student.addGrade(SchoolSubject.CHEMISTY, 3.0);
+        student.addGrade(SchoolSubject.CHEMISTY, 3.5);
+        student.addGrade(SchoolSubject.CHEMISTY, 4.0);
     }
 }
